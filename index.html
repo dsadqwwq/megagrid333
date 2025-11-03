@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MEGA GRID — Testnet (MetaMask only)</title>
+  <link rel="icon" href="./favicon.ico">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <div class="brand"><div class="logo"></div><span>MEGA GRID</span></div>
+      <div class="right">
+        <button id="connect" class="btn brand">Connect MetaMask</button>
+        <span id="status" class="muted"></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap main">
+    <section class="left">
+      <div class="panel controls">
+        <div class="row">
+          <label>Pixel size <input id="pxSize" type="number" min="1" max="12" value="2" class="input small"></label>
+          <button id="resetView" class="btn">Reset view</button>
+          <button id="clearSelection" class="btn">Clear selection</button>
+          <span id="selCount" class="muted"></span>
+        </div>
+      </div>
+      <div class="panel canvasWrap"><canvas id="grid"></canvas></div>
+      <div class="panel batch">
+        <div class="row between">
+          <div><strong>Batch queue</strong> <span id="batchCount" class="muted">(0/10)</span></div>
+          <div class="row gap">
+            <button id="clearBatch" class="btn small">Clear</button>
+            <button id="runBatch" class="btn brand small">Process (max 10)</button>
+          </div>
+        </div>
+        <ul id="batchList" class="batchList"></ul>
+      </div>
+    </section>
+
+    <aside class="right panel">
+      <div class="kicker">Tile info</div>
+      <h2 id="tileTitle">Hover a tile</h2>
+      <div class="meta">
+        <div>Token ID: <span id="tid" class="mono">—</span></div>
+        <div>Coords: <span id="coords" class="mono">—</span></div>
+        <div>Owner: <span id="owner" class="mono">—</span></div>
+        <div>Status: <span id="statusTile" class="mono">—</span></div>
+        <div>Price: <span id="price" class="mono">—</span></div>
+      </div>
+      <div class="divider"></div>
+
+      <div id="actions">
+        <div id="claimBox" class="action">
+          <h4>Claim (free)</h4>
+          <button class="btn" id="claimBtn">Add Claim to Batch</button>
+        </div>
+
+        <div id="listBox" class="action">
+          <h4>List for sale</h4>
+          <div class="row">
+            <input type="text" id="listPrice" class="input" placeholder="Price in ETH (0 for free)">
+            <button class="btn" id="listBtn">Add List to Batch</button>
+          </div>
+        </div>
+
+        <div id="buyBox" class="action">
+          <h4>Buy</h4>
+          <button class="btn" id="buyBtn">Add Buy to Batch</button>
+          <button class="btn" id="cancelBtn">Add Cancel to Batch</button>
+        </div>
+      </div>
+
+      <p class="muted small">Click tiles to select (up to 10). If none selected, actions target the hovered tile.</p>
+    </aside>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <footer><div class="wrap muted">© <span id="year"></span> MEGA GRID — Testnet</div></footer>
+  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+
+  <script src="./config.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
